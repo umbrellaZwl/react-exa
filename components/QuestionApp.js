@@ -3,6 +3,9 @@ import ShowAddButton from './ShowAddButton'
 import QuestionForm from './QuestionForm'
 import QuestionList from './QuestionList'
 
+import Pubsub from 'pubsub-js'
+import * as types from '../eventType'
+
 class QuestionApp extends Component {
   constructor(){
     super();
@@ -21,17 +24,21 @@ class QuestionApp extends Component {
       }
     ];
     this.state = {
-      formDisplay: false,
       questions: questions
     }
 
-    this.toggleForm = this.toggleForm.bind(this)
   }
 
-  toggleForm(){
-    console.log(this)
-    this.setState({
-      formDisplay: !this.state.formDisplay
+  componentDidMount(){
+    let _this = this
+    Pubsub.subscribe(types.NEW_QUESTION, (event, newQuestion) => {
+      // onNewQuestion.bind(_this,newQuestion)()
+      _this.onNewQuestion(newQuestion)
+    })
+
+    Pubsub.subscribe(types.CHANGE_VOTE, (event, args) => {
+      let {key, newCount} = args
+      this.onVote(key, newCount)
     })
   }
 
@@ -73,18 +80,13 @@ class QuestionApp extends Component {
         <div className="jumbotron text-center">
             <div className="container">
               <h1>React问答</h1>
-              <ShowAddButton toggleForm={this.toggleForm}/>
+              <ShowAddButton />
             </div>
         </div>
         <div className="main container">
-          <QuestionForm 
-          formDisplay={this.state.formDisplay} 
-          toggleForm={this.toggleForm}
-          onNewQuestion={this.onNewQuestion.bind(this)}
-          />
+          <QuestionForm />
           <QuestionList 
           questions={this.state.questions}
-          onVote = {this.onVote.bind(this)}
           />
 
         </div>

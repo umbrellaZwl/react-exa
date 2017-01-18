@@ -1,8 +1,22 @@
 import React,{ Component } from 'react'
+import * as types from '../eventType'
+import Pubsub from 'pubsub-js'
 
 class QuestionForm extends Component {
   constructor(){
     super()
+    this.state = {
+      formDisplay: false
+    }
+  }
+
+  componentDidMount() {
+    let _this = this
+    Pubsub.subscribe(types.TOGGLEFORM, (event => {
+      this.setState({
+        formDisplay: !this.state.formDisplay
+      })
+    }).bind(this))
   }
 
   submitHandle(e){
@@ -17,12 +31,19 @@ class QuestionForm extends Component {
     }
 
     this.refs.addQuestionForm.reset();
-    this.props.onNewQuestion( newQuestion )
+    // this.props.onNewQuestion( newQuestion )
+    Pubsub.publish(types.NEW_QUESTION, newQuestion)
+  }
+
+  toggleForm(){
+    this.setState({
+      formDisplay: !this.state.formDisplay
+    })
   }
 
   render(){
     let styleObj = {
-      display: this.props.formDisplay ? 'block' : 'none'
+      display: this.state.formDisplay ? 'block' : 'none'
     }
     return(
       <form ref="addQuestionForm" name="addQuestion" className="clearfix" style={styleObj} onSubmit={this.submitHandle.bind(this)}>
@@ -32,7 +53,7 @@ class QuestionForm extends Component {
         </div>
         <textarea ref="description" className="form-control" rows="3" placeholder="问题的描述"></textarea>
         <button className="btn btn-success pull-right">确认</button>
-        <a className="btn btn-default pull-right" onClick={this.props.toggleForm}>取消</a>
+        <a className="btn btn-default pull-right" onClick={this.toggleForm.bind(this)}>取消</a>
       </form>
     )
   }

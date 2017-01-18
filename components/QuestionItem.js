@@ -1,4 +1,6 @@
 import React,{ Component } from 'react'
+import Pubsub from 'pubsub-js'
+import * as types from '../eventType'
 
 class QuestionItem extends Component {
   constructor(){
@@ -7,12 +9,22 @@ class QuestionItem extends Component {
 
   voteUp(e){
     let newCount = (+this.props.voteCount) + 1;
-    this.props.onVote(this._reactInternalInstance._currentElement.key, newCount)
+    // this.props.onVote(this._reactInternalInstance._currentElement.key, newCount)
+    let data = {
+      key: this._reactInternalInstance._currentElement.key,
+      newCount
+    }
+    Pubsub.publish(types.CHANGE_VOTE, Object.assign({},data))
   }
 
   voteDown(e){
     let newCount = (+this.props.voteCount) - 1;
-    this.props.onVote(this._reactInternalInstance._currentElement.key, newCount)
+    // this.props.onVote(this._reactInternalInstance._currentElement.key, newCount)
+    let data = {
+      key: this._reactInternalInstance._currentElement.key,
+      newCount
+    }
+    Pubsub.publish(types.CHANGE_VOTE, Object.assign({},data))
   }
 
   render(){

@@ -7,14 +7,12 @@ class QuestionList extends Component {
   }
 
   render(){
-    let onVote = this.props.onVote
     let questionsComps = this.props.questions.map(function(q){
       return <QuestionItem
               key = {q.id} 
               title = {q.title}
               description = {q.description}
               voteCount =  {q.voteCount}
-              onVote = {onVote}
              />
     })
     return (
