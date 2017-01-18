@@ -7,7 +7,6 @@
 + 利用htmlWebpackPlugin来加入html，并且注入css和js
 + UglifyJsPlugin来压缩js
 + 注意path和publicPath的作用[webpack解惑](https://zhuanlan.zhihu.com/p/24744677)
-+ 一定要注意this指向问题
 + 引入Pubsub来解决组件见通信问题，避免层层嵌套的通信树
 
 ### npm i 
