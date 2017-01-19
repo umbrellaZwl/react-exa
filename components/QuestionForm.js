@@ -1,22 +1,31 @@
 import React,{ Component } from 'react'
 import * as types from '../eventType'
 import Pubsub from 'pubsub-js'
+import QuestionActions from '../actions/QuestionActions'
+import QuestionStore from '../stores/QuestionStore'
 
 class QuestionForm extends Component {
   constructor(){
     super()
     this.state = {
-      formDisplay: false
+      formDisplay: QuestionStore.formDisplay
     }
   }
 
   componentDidMount() {
     let _this = this
-    Pubsub.subscribe(types.TOGGLEFORM, (event => {
-      this.setState({
-        formDisplay: !this.state.formDisplay
-      })
-    }).bind(this))
+    QuestionStore.addChangeListener(this.onChange.bind(_this))
+  }
+
+  componentWillUnmount() {
+    let _this = this
+    QuestionStore.removeChangeListener(this.questionsChange.bind(_this))
+  }
+
+  onChange(){
+    this.setState({
+      formDisplay: QuestionStore.formDisplay
+    })
   }
 
   submitHandle(e){
@@ -31,14 +40,11 @@ class QuestionForm extends Component {
     }
 
     this.refs.addQuestionForm.reset();
-    // this.props.onNewQuestion( newQuestion )
-    Pubsub.publish(types.NEW_QUESTION, newQuestion)
+    QuestionActions.addNewQt(newQuestion)
   }
 
   toggleForm(){
-    this.setState({
-      formDisplay: !this.state.formDisplay
-    })
+    QuestionActions.toggleForm();
   }
 
   render(){

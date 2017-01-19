@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as types from '../eventType'
-import Pubsub from 'pubsub-js'
+import QuestionActions from '../actions/QuestionActions'
 
 class ShowAddButton extends Component {
   constructor(){
@@ -8,7 +8,7 @@ class ShowAddButton extends Component {
   }
 
   onToggleForm(){
-    Pubsub.publish(types.TOGGLEFORM);
+    QuestionActions.toggleForm()
   }
 
   render(){

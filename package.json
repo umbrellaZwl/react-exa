@@ -28,8 +28,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "jQuery": "^1.7.4",
-    "pubsub-js": "^1.5.4",
+    "flux": "^3.1.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
   }

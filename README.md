@@ -8,7 +8,7 @@
 + UglifyJsPlugin来压缩js
 + 注意path和publicPath的作用[webpack解惑](https://zhuanlan.zhihu.com/p/24744677)
 + 一定要注意this指向问题
-+ 引入Pubsub来解决组件见通信问题，避免层层嵌套的通信树
++ 引入Flux来解决数据存储和通信问题，参考阮一峰老师的[extremely-simple-flux-demo](https://github.com/ruanyf/extremely-simple-flux-demo)
 
 ### npm i 
 ### npm run dev
