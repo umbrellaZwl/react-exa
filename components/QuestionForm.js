@@ -1,31 +1,8 @@
 import React,{ Component } from 'react'
-import * as types from '../eventType'
-import Pubsub from 'pubsub-js'
-import QuestionActions from '../actions/QuestionActions'
-import QuestionStore from '../stores/QuestionStore'
 
 class QuestionForm extends Component {
   constructor(){
     super()
-    this.state = {
-      formDisplay: QuestionStore.formDisplay
-    }
-  }
-
-  componentDidMount() {
-    let _this = this
-    QuestionStore.addChangeListener(this.onChange.bind(_this))
-  }
-
-  componentWillUnmount() {
-    let _this = this
-    QuestionStore.removeChangeListener(this.questionsChange.bind(_this))
-  }
-
-  onChange(){
-    this.setState({
-      formDisplay: QuestionStore.formDisplay
-    })
   }
 
   submitHandle(e){
@@ -40,16 +17,13 @@ class QuestionForm extends Component {
     }
 
     this.refs.addQuestionForm.reset();
-    QuestionActions.addNewQt(newQuestion)
-  }
-
-  toggleForm(){
-    QuestionActions.toggleForm();
+    this.props.addNewQt(newQuestion)
   }
 
   render(){
+    const { formDisplay, toggleForm } = this.props
     let styleObj = {
-      display: this.state.formDisplay ? 'block' : 'none'
+      display: formDisplay ? 'block' : 'none'
     }
     return(
       <form ref="addQuestionForm" name="addQuestion" className="clearfix" style={styleObj} onSubmit={this.submitHandle.bind(this)}>
@@ -59,7 +33,7 @@ class QuestionForm extends Component {
         </div>
         <textarea ref="description" className="form-control" rows="3" placeholder="问题的描述"></textarea>
         <button className="btn btn-success pull-right">确认</button>
-        <a className="btn btn-default pull-right" onClick={this.toggleForm.bind(this)}>取消</a>
+        <a className="btn btn-default pull-right" onClick={toggleForm}>取消</a>
       </form>
     )
   }

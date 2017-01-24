@@ -7,12 +7,14 @@ class QuestionList extends Component {
   }
 
   render(){
+    const { changeVote } = this.props
     let questionsComps = this.props.questions.map(function(q){
       return <QuestionItem
               key = {q.id} 
               title = {q.title}
               description = {q.description}
               voteCount =  {q.voteCount}
+              changeVote = {changeVote}
              />
     })
     return (
