@@ -24,8 +24,7 @@ let _sortQuestions = (questions) => {
 }
 
 const initialState = {
-  questions,
-  formDisplay: false
+  questions
 }
 
 export default (state = initialState, action) => {
@@ -35,13 +34,11 @@ export default (state = initialState, action) => {
         throw new Error('question isnot a question object')
       }
       let newQuestion = action.question
-      newQuestion.id = state.questions.length + 1
+      newQuestion.id = state.questions.reduce((maxId, question) => Math.max(question.id, maxId), -1) + 1
       let questions = state.questions.concat(newQuestion)
       return { ...state, questions: _sortQuestions(questions) }
-    case types.TOGGLE_FORM:
-      return { ...state, formDisplay: !state.formDisplay }
-    case types.CHANGE_VOTE:
 
+    case types.CHANGE_VOTE:
       questions = state.questions
       var index = questions.findIndex((val, i, arr) => {
         return val.id == action.payload.key
@@ -49,8 +46,10 @@ export default (state = initialState, action) => {
 
       questions[index].voteCount = action.payload.newCount
       questions = _sortQuestions(questions)
+      console.log(questions)
 
       return { ...state, questions }
+
     default:
       return state
   }
