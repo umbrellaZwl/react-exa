@@ -46,7 +46,7 @@ export default (state = initialState, action) => {
 
       questions[index].voteCount = action.payload.newCount
       questions = _sortQuestions(questions)
-      console.log(questions)
+      // console.log(questions)
 
       return { ...state, questions }
 

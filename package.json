@@ -31,7 +31,7 @@
     "flux": "^3.1.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-redux": "^5.0.2",
+    "react-redux": "^4.4.5",
     "redux": "^3.6.0"
   }
 }

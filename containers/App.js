@@ -29,8 +29,8 @@ class App extends Component {
   }
 
   render() {
-    const { questions, actions } = this.props
-
+    let { questions, actions } = this.props
+    console.log( questions )
     return(
       <div>
         <div className="jumbotron text-center">
@@ -51,7 +51,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  questions: state.questions
+  questions: state.qtState.questions
 })
 
 /**
@@ -74,7 +74,7 @@ const mapDispatchToProps = {
 
 //使用bindActionCreators API
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(QtActions, dispatch)
+  actions: bindActionCreators(Object.assign({},QtActions), dispatch)
 })
 
 export default connect(

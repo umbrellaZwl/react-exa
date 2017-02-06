@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM, { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import QtReducer from './reducers/QtReducer'
+import QtReducer from './reducers'
 import App from './containers/App'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,9 +17,9 @@ render(
   document.getElementById('app')
 )
 
-store.subscribe(() => {
+/*store.subscribe(() => {
   console.log(store.getState())
-})
+})*/
 
 
 
