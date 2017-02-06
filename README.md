@@ -8,5 +8,6 @@
 + UglifyJsPlugin来压缩js
 + 注意path和publicPath的作用[webpack解惑](https://zhuanlan.zhihu.com/p/24744677)
 + 引入Pubsub来解决组件间通信问题，避免层层嵌套的通信树.要查看使用flux，请前往[flux分支](https://github.com/umbrellaZwl/react-exa/tree/flux)，[redux分支](https://github.com/umbrellaZwl/react-exa/tree/redux)，[react-redux分支](https://github.com/umbrellaZwl/react-exa/tree/react-redux)
+
 ### npm i 
 ### npm run dev
