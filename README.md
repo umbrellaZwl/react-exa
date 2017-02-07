@@ -2,7 +2,7 @@
 
 
 + 参照[react-zhihu-webpack](https://github.com/tsrot/react-zhihu)写的demo
-+ 使用webpack搭建开发环境
++ 使用webpack搭建开发环境,并配置babel-plugin-transform-decorators-legacy来支持转码decorator
 + 使用ExtractTextPlugin提取css，不过要注意如果同时要关联css的sourceMap的,请将devtool改为source-map
 + 利用htmlWebpackPlugin来加入html，并且注入css和js
 + UglifyJsPlugin来压缩js
