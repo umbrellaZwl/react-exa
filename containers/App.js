@@ -8,8 +8,35 @@ import ShowAddButton from '../components/ShowAddButton'
 import QuestionForm from '../components/QuestionForm'
 import QuestionList from '../components/QuestionList'
 
+const mapStateToProps = state => ({
+  questions: state.qtState.questions
+})
 
-class App extends Component {
+/**
+如果mapDispatchToProps是一个函数，返回一个对象
+
+const mapDispatchToProps = dispatch => ({
+  addNewQt: (question)=> {
+    dispatch(QtActions.addNewQt(question))
+  }
+})
+*/
+
+/**
+如果mapDispatchToProps是对象
+
+const mapDispatchToProps = {
+  addNewQt: QtActions.addNewQt
+}
+*/
+
+//使用bindActionCreators API
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(Object.assign({},QtActions), dispatch)
+})
+
+@connect(mapStateToProps,mapDispatchToProps)
+export default class App extends Component {
   constructor() {
     super()
     this.state = {
@@ -50,34 +77,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  questions: state.qtState.questions
-})
-
-/**
-如果mapDispatchToProps是一个函数，返回一个对象
-
-const mapDispatchToProps = dispatch => ({
-  addNewQt: (question)=> {
-    dispatch(QtActions.addNewQt(question))
-  }
-})
-*/
-
-/**
-如果mapDispatchToProps是对象
-
-const mapDispatchToProps = {
-  addNewQt: QtActions.addNewQt
-}
-*/
-
-//使用bindActionCreators API
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(Object.assign({},QtActions), dispatch)
-})
-
-export default connect(
+/*export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+)(App)*/
