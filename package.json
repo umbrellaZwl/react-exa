@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --port 8010"
+    "dev": "webpack-dev-server --inline --hot --port 8010",
+    "start": "set NODE_ENV=development&&nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -25,10 +26,16 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-middleware": "^1.10.0",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-hot-middleware": "^2.16.1"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "consolidate": "^0.14.5",
+    "ejs": "^2.5.5",
+    "express": "^4.14.1",
+    "express-generator": "^4.14.1",
     "flux": "^3.1.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
