@@ -25,12 +25,24 @@ if(isDev){
     stats: {
       colors: true
     },
-    index: "index.html"
+    index: "index.html",
+    hot: true,
+    inline: true
   }))
   app.use(webpackHotMiddleware(compiler))
 }
+
+app.use('/test', function(req, res, next) {
+  console.log('222');
+  next()
+})
+
 
 app.listen(port, ()=>{
   console.log(`App is running on port ${port}`)
 })
 
+/*if(module.hot) {
+  module.hot.accept();
+}
+*/

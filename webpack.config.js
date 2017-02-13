@@ -2,7 +2,7 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
-const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true'
+const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true&timeout=2000'
 
 module.exports = {
   devtool: '#source-map',
