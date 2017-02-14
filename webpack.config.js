@@ -11,7 +11,7 @@ module.exports = {
   /*entry: {
     main: [__dirname + '/main.jsx', hotMiddlewareScript]
   },*/
-  entry: [__dirname + '/main.jsx', hotMiddlewareScript],
+  entry: ['whatwg-fetch', __dirname + '/main.jsx', hotMiddlewareScript],
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle-[hash].js'

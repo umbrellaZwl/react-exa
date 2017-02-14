@@ -49,6 +49,11 @@ export default class App extends Component {
     actions: PropTypes.object.isRequired
   }
 
+  componentDidMount() {
+    const { actions } = this.props
+    actions.fetchQuestions()
+  }
+
   toggleForm() {
     this.setState({
       formDisplay: !this.state.formDisplay
@@ -57,8 +62,8 @@ export default class App extends Component {
 
   render() {
     const { qtState, actions } = this.props
-    const questions = qtState.questions
-    console.log( questions )
+    const { questions, isFetching } = qtState
+
     return(
       <div>
         <div className="jumbotron text-center">
@@ -71,7 +76,8 @@ export default class App extends Component {
           <QuestionForm formDisplay={this.state.formDisplay} 
                         toggleForm={this.toggleForm.bind(this)}
                         addNewQt={actions.addNewQt} />
-          <QuestionList questions={questions} changeVote={actions.changeVote} />
+          {isFetching && <h2>Loading......</h2>}
+          {!isFetching && <QuestionList questions={questions} changeVote={actions.changeVote} />}
         </div>
       </div>
     )

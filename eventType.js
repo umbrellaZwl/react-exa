@@ -1,3 +1,6 @@
 export const TOGGLE_FORM = 'toggle form'
-export const NEW_QUESTION = 'new question'
 export const CHANGE_VOTE = 'change vote'
+export const FETCH_QUESTIONS_REQUEST = 'fetch questions request'
+export const FETCH_QUESTIONS_RECEIVE = 'fetch questions receive'
+export const NEW_QUESTION_REQUEST = 'new question request'
+export const NEW_QUESTION_RECEIVE = 'new question receive'
