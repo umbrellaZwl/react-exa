@@ -9,7 +9,7 @@ import QuestionForm from '../components/QuestionForm'
 import QuestionList from '../components/QuestionList'
 
 const mapStateToProps = state => ({
-  questions: state.qtState.questions
+  qtState: state.qtState
 })
 
 /**
@@ -45,7 +45,7 @@ export default class App extends Component {
   }
 
   static propTypes = {
-    questions: PropTypes.array.isRequired,
+    qtState: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
   }
 
@@ -56,8 +56,8 @@ export default class App extends Component {
   }
 
   render() {
-    let { questions, actions } = this.props
-    console.log( questions )
+    const { qtState, actions } = this.props
+    const questions = qtState.questions
     return(
       <div>
         <div className="jumbotron text-center">
